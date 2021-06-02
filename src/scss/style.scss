@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+@import
+"./components/checkbox",
+"./components/switcher";
+
+@import
+"./modules/picker",
+"./modules/view";
+
+
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	font-family: 'Montserrat', sans-serif;
+}
+
+button, label {
+	cursor: pointer;
+	transition: .1s;
+}
+li {
+	list-style-type: none;
+}
+
+
+.container {
+	width: 100%;
+	min-height: 100vh;
+	padding: 32px 64px;
+	display: grid;
+	gap: 100px;
+	grid-template-columns: 1fr 1fr;
+}
+.pickers, .views {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding: 30px;
+	box-shadow: 1px 3px 12px -2px rgba(34, 60, 80, 0.18);
+}
+
+
+//animations
+.slide-enter-active, .slide-leave-active {
+	transition: .2s;
+  }
+.slide-enter, .slide-leave-to {
+	opacity: 0;
+	transform: translateX(-100px);
+}

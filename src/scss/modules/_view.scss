@@ -1,0 +1,41 @@
+$buttonColor: #dfe4ea;
+
+.view {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	&__button {
+		transition: .2s;
+		padding: 0;
+		border: none;
+		background: transparent;
+		color: #7f8c8d;
+		font-size: 20px;
+		&:hover {
+			opacity: .7;
+		}
+	}
+	&__items {
+		display: grid;
+		gap: 20px;
+	} 
+	&__filtered-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+	}
+	&__color {
+		cursor: pointer;
+		transition: .2s;
+		height: 20px;
+		width: 20px;
+		&:hover {
+			transform: scale(.9);
+		}
+	}
+}

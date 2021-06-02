@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+	<link rel="stylesheet" href="../dist/css/style.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<title>Test Task</title>
+</head>
+<body>
+	<div class="container" id="app">
+		<div class="pickers">
+
+
+
+			<div class="picker" v-for="(list, index) in lists" :key="index">
+				<header class="picker__header">
+					<label class="picker__switcher">
+						<input type="checkbox" v-model="list.isOpen">
+						<i v-if="!list.isOpen" class="fas fa-chevron-right"></i>
+						<i v-else class="fas fa-chevron-down"></i>
+					</label>
+					
+					<label
+						class="picker__checkbox" 
+						:class="{
+							'picker__checkbox--half-full':
+								list.selectedItems.length &&
+								list.selectedItems.length !== list.items.length
+							}">
+						<input
+							type="checkbox"
+							@change="changeAllItems(list)"
+							:checked="list.selectedItems.length === list.items.length"
+							>
+						<span>List {{ index + 1 }}</span>
+					</label>
+				</header>
+				
+				<transition name="slide">
+				<ul class="picker__items" v-show="list.isOpen">
+					<li class="picker__item" v-for="(item, index) in list.items" :key="index">
+						<label class="picker__checkbox">
+							<input
+								type="checkbox"
+								v-model="item.selected"
+								@change="editList(list)">
+							<span>Item {{ index + 1 }}</span>
+						</label>
+						<div class="picker__options">
+							<input
+								v-model.number.lazy="item.quantity"
+								@change="validateNumber(item)"
+								class="picker__input picker__input-number"
+								type="number"
+								min="0">
+							<input 
+								v-model="item.color"
+								type="color"
+								class="picker__input picker__input-color">
+						</div>
+					</li>
+
+				</ul>
+				</transition>
+
+			</div>
+		</div>
+
+
+		<div class="views">
+				
+			<div class="view" v-for="(list, index) in lists">
+				<header class="view__header">
+					<h3>List {{ index + 1 }}</h3>
+					<button class="view__button" @click="list.isSorted = !list.isSorted">
+						<i v-if="list.isSorted" class="fas fa-random"></i>
+						<i v-else class="fas fa-sort-alpha-down"></i>
+					</button>
+				</header>
+
+				<div class="view__items" v-if="unfilteredList[index].length">
+
+					<template v-if="list.isSorted">
+						<div class="view__filtered-row" v-for="item in filteredList[index]">
+							<div
+								class="view__color"
+								v-for="color in item.quantity"
+								@click="reduceColor(list, item.color)"
+								:style="{ background: item.color }">
+								
+							</div>
+						</div>
+					</template>
+					
+					<template v-else>
+						<div class="view__filtered-row">
+							<div
+								class="view__color"
+								v-for="(color, indx) in unfilteredList[index]"
+								:style="{ background: color }">
+							</div>
+						</div>
+					</template>
+
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<script src="../dist/js/app.js"></script>
+</body>
+</html>

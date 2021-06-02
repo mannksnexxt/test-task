@@ -1,0 +1,19 @@
+$switcherColor: #57606f;
+
+.picker__switcher {
+	color: $switcherColor;
+	height: 25px;
+	width: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	input {
+		display: none;
+	}
+	i {
+		font-size: 18px;
+	}
+	&:hover {
+		opacity: .5;
+	}
+}
