@@ -90,7 +90,6 @@
 								v-for="color in item.quantity"
 								@click="reduceColor(list, item.color)"
 								:style="{ background: item.color }">
-								
 							</div>
 						</div>
 					</template>
@@ -99,7 +98,8 @@
 						<div class="view__filtered-row">
 							<div
 								class="view__color"
-								v-for="(color, indx) in unfilteredList[index]"
+								v-for="color in unfilteredList[index]"
+								@click="reduceColor(list, color)"
 								:style="{ background: color }">
 							</div>
 						</div>

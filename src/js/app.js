@@ -146,7 +146,7 @@ const vm = new Vue({
 		reduceColor(list, color) {
 			const reducedColor = list.selectedItems.find(item => item.color === color);
 			reducedColor.quantity--;
-		}
+		},
 	},
 	computed: {
 		filteredList() {	
@@ -169,10 +169,3 @@ const vm = new Vue({
 		}
 	}
 });
-
-
-
-
-
-
-
