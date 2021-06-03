@@ -100,7 +100,7 @@
   .view__items {
     display: grid;
     gap: 20px; }
-  .view__filtered-row {
+  .view__colors-row {
     display: flex;
     flex-wrap: wrap;
     gap: 6px; }

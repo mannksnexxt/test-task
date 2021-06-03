@@ -10,10 +10,8 @@
 	<title>Test Task</title>
 </head>
 <body>
-	<div class="container" id="app">
+	<div class="container" id="app" v-cloak>
 		<div class="pickers">
-
-
 
 			<div class="picker" v-for="(list, index) in lists" :key="index">
 				<header class="picker__header">
@@ -49,6 +47,7 @@
 								@change="editList(list)">
 							<span>Item {{ index + 1 }}</span>
 						</label>
+
 						<div class="picker__options">
 							<input
 								v-model.number.lazy="item.quantity"
@@ -84,7 +83,7 @@
 				<div class="view__items" v-if="unfilteredList[index].length">
 
 					<template v-if="list.isSorted">
-						<div class="view__filtered-row" v-for="item in filteredList[index]">
+						<div class="view__colors-row" v-for="item in filteredList[index]">
 							<div
 								class="view__color"
 								v-for="color in item.quantity"
@@ -95,7 +94,7 @@
 					</template>
 					
 					<template v-else>
-						<div class="view__filtered-row">
+						<div class="view__colors-row">
 							<div
 								class="view__color"
 								v-for="color in unfilteredList[index]"
@@ -104,7 +103,6 @@
 							</div>
 						</div>
 					</template>
-
 
 				</div>
 			</div>

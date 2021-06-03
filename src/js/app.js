@@ -116,10 +116,12 @@ let appLists =  [
 
 
 
-const vm = new Vue({
+new Vue({
 	el: '#app',
-	data: {
-		lists: appLists
+	data() {
+		return {
+			lists: appLists,
+		}
 	},
 	methods: {
 		validateNumber(item) {
@@ -132,13 +134,12 @@ const vm = new Vue({
 				list.items.forEach(item => {
 					item.selected = true;
 				});
-				this.editList(list);
 			} else {
 				list.items.forEach(item => {
 					item.selected = false;
 				});
-				this.editList(list);
 			}
+			this.editList(list);
 		},
 		editList(list) {
 			list.selectedItems = list.items.filter(item => item.selected === true);
